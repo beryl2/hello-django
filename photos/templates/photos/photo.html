@@ -1,0 +1,24 @@
+{% extends 'photos/base.html' %}
+
+{% block style %}
+<style>
+  .image-thumbnail {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="m-5">
+  <div class="container">
+    <div class="row_justify_center">
+      <div class="col">
+        <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Go back</a>
+      </div>
+    </div>
+
+    <img class="image-thumbnail" src="{{image.src.url}}" />
+  </div>
+</div>
+{% endblock content %}

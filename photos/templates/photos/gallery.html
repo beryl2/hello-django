@@ -1,0 +1,57 @@
+{% extends 'photos/base.html' %}
+
+{% block style %}
+<style>
+a {
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.image-thumbail{
+    height: 200px;
+    object-fit: cover;
+}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">Categories</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a href="{% url 'gallery' %}">All</a>
+          </li>
+          {% for category in categories %}
+          <li class="list-group-item">
+            <a href="{% url 'gallery' %}?category={{category}}">{{category}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        {% for image in images %}
+        <div class="col-md-4">
+          <div class="card my-2">
+            <img class="image-thumbail" src="{{image.src.url}}" />
+            <div class="card-body">
+              <small> Category: {{ image.category }} </small>
+            </div>
+            <a
+              href="{% url 'photo' pk=image.pk %}"
+              class="btn btn-outline-dark btn-sm m-1"
+              >view</a
+            >
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
